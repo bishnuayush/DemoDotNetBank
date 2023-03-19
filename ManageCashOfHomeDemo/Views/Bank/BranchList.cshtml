@@ -1,0 +1,95 @@
+﻿@model IEnumerable<myApp.Models.BranchModel>
+
+
+@{
+    ViewBag.Title = "BranchList";
+}
+
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <style type="text/css">
+        body {
+            /*color: #4CAF50;*/
+            font-size: 20px;
+            margin-top: 22px;
+            font-weight: 600;
+        }
+
+        hari {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body style="padding-top:10px; ">
+
+
+    <div style="width: 80%; margin-left:100px">
+        @*<button type="button" class="btn navbar-btn hari">
+                @Html.ActionLink("Back to Home", "Index")
+            </button>*@
+        <br />
+        <table id="tblCustomers" cellpadding="2" cellspacing="0" border="1" style="margin-top:20px; border:1px solid " class="table-striped table-hover">
+
+            <thead>
+                <tr>
+                    <th>Branch Number</th>
+                    <th>Branch Name</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    @*<script src="../../Scripts/jquery-3.4.1.min.js"></script>*@
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    @*<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>*@
+
+
+    @*<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />*@
+
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <link href="~/Content/jquery.dataTables.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Bank/BranchList",
+                data: '{}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccess,
+                failure: function (response) {
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+        });
+        function OnSuccess(response) {
+            $("#tblCustomers").DataTable(
+                {
+                    bLengthChange: true,
+                    lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "All"]],
+                    bFilter: true,
+                    bSort: true,
+                    bPaginate: true,
+                    data: response,
+                    columns: [
+                        { 'data': 'branchNum' },
+                        { 'data': 'branchName' },
+                    ]
+                });
+        };
+    </script>
+</body>
+</html>

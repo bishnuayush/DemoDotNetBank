@@ -1,0 +1,21 @@
+﻿@model myApp.Models.AccountModel
+
+@{
+    ViewBag.Title = "MyPartialView";
+}
+
+<h2>MyPartialView</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.LabelFor(model => model.balance)
+
+    @Html.LabelFor(model => model.minBalance)
+
+    @Html.LabelFor(model => model.withdrawLimit)
+
+}
+
+

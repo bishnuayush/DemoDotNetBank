@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "e3045139-955e-46f7-9941-85f5732a1ae0": {
+      "ProjectGuid": "e3045139-955e-46f7-9941-85f5732a1ae0",
+      "DisplayName": "BankApp.Db",
+      "ColorIndex": 0
+    },
+    "17553dcc-3f44-41a2-a8bb-f0220e525466": {
+      "ProjectGuid": "17553dcc-3f44-41a2-a8bb-f0220e525466",
+      "DisplayName": "ManageCashOfHomeDemo",
+      "ColorIndex": 1
+    },
+    "432528be-fd81-4914-abb4-3d587d78b84a": {
+      "ProjectGuid": "432528be-fd81-4914-abb4-3d587d78b84a",
+      "DisplayName": "myApp.Models",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}

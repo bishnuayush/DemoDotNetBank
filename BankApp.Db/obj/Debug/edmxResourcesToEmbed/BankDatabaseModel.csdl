@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BankDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="BankDBEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Transactions" EntityType="BankDBModel.Transaction" />
+    <EntitySet Name="CashTransactions" EntityType="BankDBModel.CashTransaction" />
+    <AssociationSet Name="FK_CASHTRANSACTION_TRANSACTION" Association="BankDBModel.FK_CASHTRANSACTION_TRANSACTION">
+      <End Role="Transaction" EntitySet="Transactions" />
+      <End Role="CashTransaction" EntitySet="CashTransactions" />
+    </AssociationSet>
+    <EntitySet Name="Branches" EntityType="BankDBModel.Branch" />
+    <EntitySet Name="Accounts" EntityType="BankDBModel.Account" />
+    <AssociationSet Name="FK_ACCOUNT_BRANCH" Association="BankDBModel.FK_ACCOUNT_BRANCH">
+      <End Role="Branch" EntitySet="Branches" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRANSACTION_ACCOUNT" Association="BankDBModel.FK_TRANSACTION_ACCOUNT">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <EntitySet Name="Users" EntityType="BankDBModel.User" />
+    <AssociationSet Name="FK_ACCOUNT_USER" Association="BankDBModel.FK_ACCOUNT_USER">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRANSACTION_USER" Association="BankDBModel.FK_TRANSACTION_USER">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="AccountId" Type="Int32" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="Deposit" Type="Int32" />
+    <Property Name="Withdrawl" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="TransactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CashTransactions" Relationship="BankDBModel.FK_CASHTRANSACTION_TRANSACTION" FromRole="Transaction" ToRole="CashTransaction" />
+    <NavigationProperty Name="Account" Relationship="BankDBModel.FK_TRANSACTION_ACCOUNT" FromRole="Transaction" ToRole="Account" />
+    <NavigationProperty Name="User" Relationship="BankDBModel.FK_TRANSACTION_USER" FromRole="Transaction" ToRole="User" />
+  </EntityType>
+  <EntityType Name="CashTransaction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransactionId" Type="Int32" />
+    <Property Name="cash" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Count" Type="Int32" />
+    <Property Name="C100" Type="Int32" />
+    <Property Name="C200" Type="Int32" />
+    <Property Name="C500" Type="Int32" />
+    <Property Name="C2000" Type="Int32" />
+    <NavigationProperty Name="Transaction" Relationship="BankDBModel.FK_CASHTRANSACTION_TRANSACTION" FromRole="CashTransaction" ToRole="Transaction" />
+  </EntityType>
+  <Association Name="FK_CASHTRANSACTION_TRANSACTION">
+    <End Type="BankDBModel.Transaction" Role="Transaction" Multiplicity="0..1" />
+    <End Type="BankDBModel.CashTransaction" Role="CashTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transaction">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CashTransaction">
+        <PropertyRef Name="TransactionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Branch">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BanchNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="BranchName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Accounts" Relationship="BankDBModel.FK_ACCOUNT_BRANCH" FromRole="Branch" ToRole="Account" />
+  </EntityType>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="AccountNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MinBalance" Type="Int32" />
+    <Property Name="WithdrawLimit" Type="Int32" />
+    <Property Name="Balance" Type="Int32" />
+    <Property Name="BranchId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Branch" Relationship="BankDBModel.FK_ACCOUNT_BRANCH" FromRole="Account" ToRole="Branch" />
+    <NavigationProperty Name="Transactions" Relationship="BankDBModel.FK_TRANSACTION_ACCOUNT" FromRole="Account" ToRole="Transaction" />
+    <NavigationProperty Name="User" Relationship="BankDBModel.FK_ACCOUNT_USER" FromRole="Account" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_ACCOUNT_BRANCH">
+    <End Type="BankDBModel.Branch" Role="Branch" Multiplicity="1" />
+    <End Type="BankDBModel.Account" Role="Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="BranchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRANSACTION_ACCOUNT">
+    <End Type="BankDBModel.Account" Role="Account" Multiplicity="0..1" />
+    <End Type="BankDBModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Accounts" Relationship="BankDBModel.FK_ACCOUNT_USER" FromRole="User" ToRole="Account" />
+    <NavigationProperty Name="Transactions" Relationship="BankDBModel.FK_TRANSACTION_USER" FromRole="User" ToRole="Transaction" />
+  </EntityType>
+  <Association Name="FK_ACCOUNT_USER">
+    <End Type="BankDBModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="BankDBModel.Account" Role="Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRANSACTION_USER">
+    <End Type="BankDBModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="BankDBModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

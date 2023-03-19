@@ -1,0 +1,210 @@
+﻿@model myApp.Models.UserModel
+
+@{
+    ViewBag.Title = "RegisterNewUser";
+}
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+<h2>Register New User</h2>
+
+<p style="color:green">@ViewBag.isSuceess</p>
+
+@*@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" id="postform">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.lName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.lName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.lName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.mobileNo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.mobileNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mobileNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+    </div>
+}*@
+
+
+<table border="1">
+    <tr>
+        <td>Upload image</td>
+        <td><input id="file1" type="file" accept="application/pdf,application/vnd.ms-excel,image/png, image/gif, image/jpeg" /></td>
+    </tr>
+
+    @*<tr>
+            <td><input id="button1" type="button" value="Save PDF" /></td>
+            <td><b style="color:green;"><span id="mess"></span></b></td>
+        </tr>*@
+</table>
+<center>
+    <hr />
+
+</center>
+
+@*<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" id="button1" value="Register" class="btn btn-default" />
+    </div>
+</div>*@
+
+
+
+<style>
+    input {
+        max-width: 250px;
+    }
+</style>
+<h5 class="text-danger">
+    <b>Note:</b>Please Enter all details correctly and submit
+</h5>
+
+<div class="container">
+    <form name="postform" id="postform" class="form-horizontal">
+        <div class="form-group">
+            <label class="text-info">fName</label>
+            <input type="text" id="txtfname" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="text-info">lName</label>
+            <input type="text" id="txtlastName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="text-info">mobileNo</label>
+            <input type="number" id="mobno" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="text-info">address</label>
+            <input type="text" id="txtaddress" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="text-info">email</label>
+            <input type="email" id="txtemail" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="text-info">password</label>
+            <input type="password" id="txtpass" class="form-control" />
+        </div>
+        <button type="submit" id="button1" class="btn btn-default">Save</button>
+    </form>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //$("#postform").submit(function (e) {
+        $("#button1").on("click", function (e) {
+            e.preventDefault();
+            //debugger;
+            //var apiurl = "";
+            var data = new FormData();
+            var saveImg = $("#file1").get(0).files;
+            console.log(saveImg);
+            console.log(saveImg.length);
+            if (saveImg.length > 0) {
+                data.append("Filesave", saveImg[0]);
+            }
+            var data = {
+                FirstName: $("#txtfname").val().trim(),
+                LastName: $("#txtlastName").val().trim(),
+                MobileNumber: $("#mobno").val().trim(),
+                Address: $("#txtaddress").val().trim(),
+                Email: $("#txtemail").val().trim(),
+                Password: $("#txtpass").val().trim(),
+                //Image: $("#file1").get(0).files
+                /*Image: $saveImg[0].name*/
+            }
+            console.log(data);
+            $.ajax({
+                url: "https://localhost:44324/api/BankApi/RegisterUser",
+                type: 'POST',
+                dataType: 'json',
+                data: data,
+                success: function (d) {
+                    alert("Saved Successfully");
+                    document.getElementById("postform").reset();
+                },
+                error: function () {
+                    alert("Error please try again");
+                }
+            });
+        });
+    });
+
+</script>
+
+
+
+
+@*<script>
+        $(document).ready(function () {
+            $("#button1").on("click", function () {
+                var data = new FormData();
+                var saveImg = $("#file1").get(0).files;
+                if (saveImg.length > 0) {
+                    data.append("Filesave", saveImg[0]);
+                }
+                $.ajax({
+                    type: "POST",
+                    url: "https://localhost:44324/api/BankApi/insertImage/",
+                    contentType: false,
+                    processData: false,
+                    data: data
+                }).then(function () {
+                    $("#mess").text("image Saved Successfully ..!!");
+                });
+            });
+        });
+    </script>*@
+
+<div>
+    @Html.ActionLink("Back To Login", "Login")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

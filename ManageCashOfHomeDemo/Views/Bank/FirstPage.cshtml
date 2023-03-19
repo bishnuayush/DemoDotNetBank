@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "FirstPage";
+}
+
+<h2>BankApp</h2>
+
+
+@if (Request.IsAuthenticated)
+{
+    <span>Welcome - <b style="color:green"> @Html.Encode(User.Identity.Name) </b></span>
+    <br />
+    <br />
+
+
+    <input type="button" value="Branch" onclick="@("window.location.href='" + @Url.Action("BranchList", "Bank") + "'");" />
+
+    <input type="button" value="Account" onclick="@("window.location.href='" + @Url.Action("AccountList", "Bank") + "'");" />
+
+    <input type="button" value="Transaction List" onclick="@("window.location.href='" + @Url.Action("TransactionList", "Transaction") + "'");" />
+
+
+    <p style="color:green">@ViewBag.success</p>
+}

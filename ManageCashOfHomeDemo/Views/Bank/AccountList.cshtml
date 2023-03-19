@@ -1,0 +1,101 @@
+﻿@model IEnumerable<myApp.Models.AccountModel>
+
+@{
+    ViewBag.Title = "AccountList";
+}
+
+@if (Request.IsAuthenticated)
+{
+
+    <h3><b style="color:brown">Account List</b></h3>
+
+    <input type="button" value="Add Account" onclick="@("window.location.href='" + @Url.Action("AddAccount", "Bank") + "'");" />
+
+    <table class="table" id="AllTech">
+        <thead>
+            <tr>
+                @*<th>
+                    @Html.DisplayNameFor(model => model.userId)
+                </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.accountNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User.fullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Branch.branchName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.minBalance)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.withdrawLimit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.balance)
+                </th>
+                @*<th>
+                    @Html.DisplayNameFor(model => model.branchId)
+                </th>*@
+                <th></th>
+            </tr>
+        <thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.userId)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.accountNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.fullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Branch.branchName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.minBalance)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.withdrawLimit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.balance)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.branchId)
+                    </td>*@
+                    <td>
+                        @Html.ActionLink("Edit", "EditAccountDetails", new { id = item.id }) |
+                        @*@Html.ActionLink("Details", "Details", new { id = item.id }) |*@
+                        @Html.ActionLink("Delete", "DeleteAccount", new { id = item.id, item.accountNumber, item.userId, item.minBalance, item.withdrawLimit, item.balance, item.branchId })
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+    <div>
+        @Html.ActionLink("Home", "FirstPage")
+    </div>
+
+}
+
+@*<script src="../../Scripts/jquery-3.3.1.min.js"></script>*@
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<link href="~/Content/jquery.dataTables.css" rel="stylesheet" />
+
+@*<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>*@
+@*<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />*@
+
+<script>
+    $(document).ready(function () {
+        $('#AllTech').DataTable();
+    })
+</script>

@@ -1,0 +1,45 @@
+D:\Swarup\ManageCashOfHomeDemo\myApp.Models\bin\Debug\myApp.Models.dll
+D:\Swarup\ManageCashOfHomeDemo\myApp.Models\bin\Debug\myApp.Models.pdb
+D:\Swarup\ManageCashOfHomeDemo\myApp.Models\obj\Debug\myApp.Models.csproj.AssemblyReference.cache
+D:\Swarup\ManageCashOfHomeDemo\myApp.Models\obj\Debug\myApp.Models.csproj.CoreCompileInputs.cache
+D:\Swarup\ManageCashOfHomeDemo\myApp.Models\obj\Debug\myApp.Models.csproj.CopyComplete
+D:\Swarup\ManageCashOfHomeDemo\myApp.Models\obj\Debug\myApp.Models.dll
+D:\Swarup\ManageCashOfHomeDemo\myApp.Models\obj\Debug\myApp.Models.pdb
+D:\Swarup\ManageCashOfHomeDemo\myApp.Models\bin\Debug\myApp.Models.dll.config
+D:\Swarup\ManageCashOfHomeDemo\myApp.Models\bin\Debug\BankApp.Db.dll
+D:\Swarup\ManageCashOfHomeDemo\myApp.Models\bin\Debug\EntityFramework.dll
+D:\Swarup\ManageCashOfHomeDemo\myApp.Models\bin\Debug\EntityFramework.SqlServer.dll
+D:\Swarup\ManageCashOfHomeDemo\myApp.Models\bin\Debug\BankApp.Db.pdb
+D:\Swarup\ManageCashOfHomeDemo\myApp.Models\bin\Debug\BankApp.Db.dll.config
+D:\Swarup\ManageCashOfHomeDemo\myApp.Models\bin\Debug\EntityFramework.xml
+D:\Swarup\ManageCashOfHomeDemo\myApp.Models\bin\Debug\EntityFramework.SqlServer.xml
+D:\Swarup\BankAppDemoProject\.Net MVC\ManageCashOfHomeDemo\myApp.Models\bin\Debug\myApp.Models.dll.config
+D:\Swarup\BankAppDemoProject\.Net MVC\ManageCashOfHomeDemo\myApp.Models\bin\Debug\myApp.Models.dll
+D:\Swarup\BankAppDemoProject\.Net MVC\ManageCashOfHomeDemo\myApp.Models\bin\Debug\myApp.Models.pdb
+D:\Swarup\BankAppDemoProject\.Net MVC\ManageCashOfHomeDemo\myApp.Models\bin\Debug\BankApp.Db.dll
+D:\Swarup\BankAppDemoProject\.Net MVC\ManageCashOfHomeDemo\myApp.Models\bin\Debug\EntityFramework.dll
+D:\Swarup\BankAppDemoProject\.Net MVC\ManageCashOfHomeDemo\myApp.Models\bin\Debug\EntityFramework.SqlServer.dll
+D:\Swarup\BankAppDemoProject\.Net MVC\ManageCashOfHomeDemo\myApp.Models\bin\Debug\BankApp.Db.pdb
+D:\Swarup\BankAppDemoProject\.Net MVC\ManageCashOfHomeDemo\myApp.Models\bin\Debug\BankApp.Db.dll.config
+D:\Swarup\BankAppDemoProject\.Net MVC\ManageCashOfHomeDemo\myApp.Models\bin\Debug\EntityFramework.xml
+D:\Swarup\BankAppDemoProject\.Net MVC\ManageCashOfHomeDemo\myApp.Models\bin\Debug\EntityFramework.SqlServer.xml
+D:\Swarup\BankAppDemoProject\.Net MVC\ManageCashOfHomeDemo\myApp.Models\obj\Debug\myApp.Models.csproj.AssemblyReference.cache
+D:\Swarup\BankAppDemoProject\.Net MVC\ManageCashOfHomeDemo\myApp.Models\obj\Debug\myApp.Models.csproj.CoreCompileInputs.cache
+D:\Swarup\BankAppDemoProject\.Net MVC\ManageCashOfHomeDemo\myApp.Models\obj\Debug\myApp.Models.csproj.CopyComplete
+D:\Swarup\BankAppDemoProject\.Net MVC\ManageCashOfHomeDemo\myApp.Models\obj\Debug\myApp.Models.dll
+D:\Swarup\BankAppDemoProject\.Net MVC\ManageCashOfHomeDemo\myApp.Models\obj\Debug\myApp.Models.pdb
+E:\ANGULAR PROJECT\BankApp\BankDotNet\DemoDotNet-master\myApp.Models\bin\Debug\myApp.Models.dll.config
+E:\ANGULAR PROJECT\BankApp\BankDotNet\DemoDotNet-master\myApp.Models\bin\Debug\myApp.Models.dll
+E:\ANGULAR PROJECT\BankApp\BankDotNet\DemoDotNet-master\myApp.Models\bin\Debug\myApp.Models.pdb
+E:\ANGULAR PROJECT\BankApp\BankDotNet\DemoDotNet-master\myApp.Models\bin\Debug\BankApp.Db.dll
+E:\ANGULAR PROJECT\BankApp\BankDotNet\DemoDotNet-master\myApp.Models\bin\Debug\EntityFramework.dll
+E:\ANGULAR PROJECT\BankApp\BankDotNet\DemoDotNet-master\myApp.Models\bin\Debug\EntityFramework.SqlServer.dll
+E:\ANGULAR PROJECT\BankApp\BankDotNet\DemoDotNet-master\myApp.Models\bin\Debug\BankApp.Db.pdb
+E:\ANGULAR PROJECT\BankApp\BankDotNet\DemoDotNet-master\myApp.Models\bin\Debug\BankApp.Db.dll.config
+E:\ANGULAR PROJECT\BankApp\BankDotNet\DemoDotNet-master\myApp.Models\bin\Debug\EntityFramework.xml
+E:\ANGULAR PROJECT\BankApp\BankDotNet\DemoDotNet-master\myApp.Models\bin\Debug\EntityFramework.SqlServer.xml
+E:\ANGULAR PROJECT\BankApp\BankDotNet\DemoDotNet-master\myApp.Models\obj\Debug\myApp.Models.csproj.AssemblyReference.cache
+E:\ANGULAR PROJECT\BankApp\BankDotNet\DemoDotNet-master\myApp.Models\obj\Debug\myApp.Models.csproj.CoreCompileInputs.cache
+E:\ANGULAR PROJECT\BankApp\BankDotNet\DemoDotNet-master\myApp.Models\obj\Debug\myApp.Models.csproj.CopyComplete
+E:\ANGULAR PROJECT\BankApp\BankDotNet\DemoDotNet-master\myApp.Models\obj\Debug\myApp.Models.dll
+E:\ANGULAR PROJECT\BankApp\BankDotNet\DemoDotNet-master\myApp.Models\obj\Debug\myApp.Models.pdb

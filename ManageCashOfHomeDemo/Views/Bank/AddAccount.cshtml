@@ -1,0 +1,68 @@
+﻿@model myApp.Models.AccountModel
+
+@{
+    ViewBag.Title = "AddAccount";
+}
+
+@if (Request.IsAuthenticated)
+{
+    <h3><b style="color:brown">Add Account</b></h3>
+
+    using (Html.BeginForm("AddAccount", "Bank", FormMethod.Post))
+    {
+        <span><b>Select User</b>&nbsp</span>@Html.DropDownListFor(model => model.id, new SelectList(Model.UserList, "id", "fName"), "User Name")
+        <br />
+        <br />
+        <span><b>Select Branch Name</b>&nbsp</span>@Html.DropDownListFor(model => model.branchId, new SelectList(Model.BranchList, "branchid", "branchName"), "Branch Name")
+        <br />
+        <br />
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.accountNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.accountNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.accountNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.minBalance, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.minBalance, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.minBalance, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.withdrawLimit, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.withdrawLimit, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.withdrawLimit, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.balance, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.balance, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.balance, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <input type="submit" value="AddAccount" />
+            @ViewBag.isSuceess
+        }
+    }
+
+    <br />
+
+    <div>
+        @Html.ActionLink("Account List", "AccountList")
+    </div>
+    <div>
+        @Html.ActionLink("Home", "FirstPage")
+    </div>
+
+}

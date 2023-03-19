@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BankDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="BankDBModelStoreContainer">
+    <EntitySet Name="Transactions" EntityType="BankDBModel.Store.Transactions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CashTransactions" EntityType="BankDBModel.Store.CashTransactions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Branches" EntityType="BankDBModel.Store.Branches" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Accounts" EntityType="BankDBModel.Store.Accounts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="BankDBModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_CASHTRANSACTION_TRANSACTION" Association="BankDBModel.Store.FK_CASHTRANSACTION_TRANSACTION">
+      <End Role="Transaction" EntitySet="Transactions" />
+      <End Role="CashTransaction" EntitySet="CashTransactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ACCOUNT_BRANCH" Association="BankDBModel.Store.FK_ACCOUNT_BRANCH">
+      <End Role="Branch" EntitySet="Branches" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRANSACTION_ACCOUNT" Association="BankDBModel.Store.FK_TRANSACTION_ACCOUNT">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ACCOUNT_USER" Association="BankDBModel.Store.FK_ACCOUNT_USER">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRANSACTION_USER" Association="BankDBModel.Store.FK_TRANSACTION_USER">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Transactions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="true" />
+    <Property Name="AccountId" Type="int" Nullable="true" />
+    <Property Name="Amount" Type="int" Nullable="true" />
+    <Property Name="Deposit" Type="int" Nullable="true" />
+    <Property Name="Withdrawl" Type="int" Nullable="true" />
+    <Property Name="Date" Type="datetime" Nullable="true" />
+    <Property Name="TransactionType" Type="nvarchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CashTransactions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TransactionId" Type="int" Nullable="true" />
+    <Property Name="cash" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Count" Type="int" Nullable="true" />
+    <Property Name="C100" Type="int" Nullable="true" />
+    <Property Name="C200" Type="int" Nullable="true" />
+    <Property Name="C500" Type="int" Nullable="true" />
+    <Property Name="C2000" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Branches">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BanchNumber" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="BranchName" Type="nvarchar" Nullable="true" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="true" />
+    <Property Name="AccountNumber" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="MinBalance" Type="int" Nullable="true" />
+    <Property Name="WithdrawLimit" Type="int" Nullable="true" />
+    <Property Name="Balance" Type="int" Nullable="true" />
+    <Property Name="BranchId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="LastName" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="MobileNumber" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="Password" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="Image" Type="nvarchar" Nullable="true" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK_CASHTRANSACTION_TRANSACTION">
+    <End Role="Transaction" Type="BankDBModel.Store.Transactions" Multiplicity="0..1" />
+    <End Role="CashTransaction" Type="BankDBModel.Store.CashTransactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transaction">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CashTransaction">
+        <PropertyRef Name="TransactionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ACCOUNT_BRANCH">
+    <End Role="Branch" Type="BankDBModel.Store.Branches" Multiplicity="1" />
+    <End Role="Account" Type="BankDBModel.Store.Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="BranchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRANSACTION_ACCOUNT">
+    <End Role="Account" Type="BankDBModel.Store.Accounts" Multiplicity="0..1" />
+    <End Role="Transaction" Type="BankDBModel.Store.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ACCOUNT_USER">
+    <End Role="User" Type="BankDBModel.Store.Users" Multiplicity="0..1" />
+    <End Role="Account" Type="BankDBModel.Store.Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRANSACTION_USER">
+    <End Role="User" Type="BankDBModel.Store.Users" Multiplicity="0..1" />
+    <End Role="Transaction" Type="BankDBModel.Store.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

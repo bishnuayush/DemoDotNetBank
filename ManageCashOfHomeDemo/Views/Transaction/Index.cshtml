@@ -1,0 +1,107 @@
+﻿@model myApp.Models.TransactionModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (Request.IsAuthenticated)
+{
+    <h3><b style="color:brown">Transaction</b></h3>
+
+    using (Html.BeginForm("Index", "Transaction", FormMethod.Post))
+    {
+        <div class="dropdown">
+            <span><b>Select Account</b>&nbsp</span>@Html.DropDownListFor(model => model.accountId, new SelectList(Model.accountList, "id", "accountNumber"), "Select Account")
+        </div>
+        <br />
+
+        <div>
+            @*@Html.LabelFor(model => model.balance, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        </div>
+
+        @Html.RadioButtonFor(model => model.transactionType, "D")<b>Deposit &nbsp</b>
+
+        @Html.RadioButtonFor(model => model.transactionType, "W")<b>Withdrawl</b>
+
+        <br />
+        <br />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.amount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CashTransaction.C100, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CashTransaction.C100, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CashTransaction.C100, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CashTransaction.C200, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CashTransaction.C200, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CashTransaction.C200, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CashTransaction.C500, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CashTransaction.C500, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CashTransaction.C500, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CashTransaction.C2000, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CashTransaction.C2000, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CashTransaction.C2000, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <b style="color:red">@ViewBag.minBalamceErr</b>
+        <b style="color:red">@ViewBag.limitError</b>
+        <b style="color:red">@ViewBag.message</b>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Click" class="btn btn-default" />
+            </div>
+        </div>
+
+
+    }
+    <br />
+    <div>
+        @Html.ActionLink("Home", "FirstPage", "Bank")
+    </div>
+
+    <br />
+    @Html.ActionLink("Back To List", "TransactionList")
+
+
+
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#content tbody tr").each(function (i, row) {
+                var $actualRow = $(row);
+                if ($actualRow.find('input[type=RadioButton]').prop('D') == true) {
+                    $actualRow.css('background-color', '#EAF2D3');
+                }
+                else {
+                    $actualRow.css('background-color', '#FF9E9E');
+                }
+            });
+        });
+    </script>
+
+}
+
